@@ -14,6 +14,16 @@
 		1A1A1A1A1A1A1A1A1A1A1005 /* TodoModelHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2B2B2B2B2B2B2B2B2B2B9001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A1A1A1A1A1A1A1A1A1A8001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B2B2B2B2B2B2B2B2B2B5001;
+			remoteInfo = SharedFramework;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1A1A1A1A1A1A1A1A1A1A2001 /* KmpTodoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmpTodoApp.swift; sourceTree = "<group>"; };
 		1A1A1A1A1A1A1A1A1A1A2002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,18 +74,33 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXAggregateTarget section */
+		2B2B2B2B2B2B2B2B2B2B5001 /* SharedFramework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2B2B2B2B2B2B2B2B2B2B9002 /* Build configuration list for PBXAggregateTarget "SharedFramework" */;
+			buildPhases = (
+				2B2B2B2B2B2B2B2B2B2B7001 /* Prepare Shared Framework */,
+			);
+			dependencies = (
+			);
+			name = SharedFramework;
+			productName = SharedFramework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXNativeTarget section */
 		1A1A1A1A1A1A1A1A1A1A5001 /* iosApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A1A1A1A1A1A1A1A1A1A9002 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
-				1A1A1A1A1A1A1A1A1A1A7001 /* Build Shared Framework */,
 				1A1A1A1A1A1A1A1A1A1A6001 /* Sources */,
+				1A1A1A1A1A1A1A1A1A1A7001 /* Build Shared Framework */,
 				1A1A1A1A1A1A1A1A1A1A3001 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2B2B2B2B2B2B2B2B2B2B9003 /* PBXTargetDependency */,
 			);
 			name = iosApp;
 			productName = iosApp;
@@ -110,12 +135,29 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2B2B2B2B2B2B2B2B2B2B5001 /* SharedFramework */,
 				1A1A1A1A1A1A1A1A1A1A5001 /* iosApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B2B2B2B2B2B2B2B2B2B7001 /* Prepare Shared Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Shared Framework";
+			outputPaths = (
+				"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)/Shared.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./scripts/build-shared-xcode-framework.sh\n";
+		};
 		1A1A1A1A1A1A1A1A1A1A7001 /* Build Shared Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -126,10 +168,11 @@
 			);
 			name = "Build Shared Framework";
 			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Shared.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "if [ -d /usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ]; then\n  export JAVA_HOME=/usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -148,7 +191,27 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2B2B2B2B2B2B2B2B2B2B9003 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B2B2B2B2B2B2B2B2B2B5001 /* SharedFramework */;
+			targetProxy = 2B2B2B2B2B2B2B2B2B2B9001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2B2B2B2B2B2B2B2B2B2B9101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		2B2B2B2B2B2B2B2B2B2B9102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
 		1A1A1A1A1A1A1A1A1A1A9101 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -166,7 +229,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kmptodo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -194,7 +260,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kmptodo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -209,8 +278,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					Shared,
+				);
 			};
 			name = Debug;
 		};
@@ -218,14 +294,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					Shared,
+				);
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B2B2B2B2B2B2B2B2B2B9002 /* Build configuration list for PBXAggregateTarget "SharedFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B2B2B2B2B2B2B2B2B2B9101 /* Debug */,
+				2B2B2B2B2B2B2B2B2B2B9102 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1A1A1A1A1A1A1A1A1A1A9001 /* Build configuration list for PBXProject "iosApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
