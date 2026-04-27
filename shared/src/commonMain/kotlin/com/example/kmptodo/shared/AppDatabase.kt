@@ -25,5 +25,5 @@ expect object AppDatabaseConstructor : RoomDatabaseConstructor<AppDatabase> {
 fun createAppDatabase(builder: RoomDatabase.Builder<AppDatabase>): AppDatabase =
     builder
         .setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
+        .setQueryCoroutineContext(Dispatchers.Default)
         .build()

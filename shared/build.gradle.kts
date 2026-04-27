@@ -10,10 +10,10 @@ plugins {
 kotlin {
     android {
         namespace = "com.example.kmptodo.shared"
-        compileSdk = 37
+        compileSdk = 36
         minSdk = 23
 
-        compilerOptions.configure {
+        compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }

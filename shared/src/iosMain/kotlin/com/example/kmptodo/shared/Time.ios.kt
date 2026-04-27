@@ -1,6 +1,15 @@
 package com.example.kmptodo.shared
 
-import platform.Foundation.NSDate
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.alloc
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.ptr
+import platform.posix.gettimeofday
+import platform.posix.timeval
 
-actual fun currentTimeMillis(): Long =
-    (NSDate().timeIntervalSince1970 * 1_000).toLong()
+@OptIn(ExperimentalForeignApi::class)
+actual fun currentTimeMillis(): Long = memScoped {
+    val currentTime = alloc<timeval>()
+    gettimeofday(currentTime.ptr, null)
+    currentTime.tv_sec * 1_000L + currentTime.tv_usec / 1_000L
+}
