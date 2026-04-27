@@ -400,6 +400,107 @@ final class TodoScreenModel {
 
 ⸻
 
+iOS Observation Framework 方針
+
+iOS側では、SwiftUIの状態管理に Observation Framework / `@Observable` を使ってよい。
+ただし、Observation Framework は iOS UI 層のための仕組みとして使う。
+KMP shared ViewModel、Repository、UseCase、Room DB の責務を Swift 側へ移さないこと。
+
+基本構成は以下とする。
+
+```text
+shared Kotlin ViewModel
+  ↓ StateFlow / Flow / suspend fun
+SKIE
+  ↓ AsyncSequence / async-await
+Swift @Observable ScreenModel
+  ↓
+SwiftUI View
+```
+
+方針
+
+* 新規iOS実装では @Observable を優先する
+* iOS 16以下対応が必要な場合のみ ObservableObject / @Published を検討する
+* SwiftUI View は @Observable な ScreenModel を参照する
+* ScreenModel は shared ViewModel の薄いAdapterにとどめる
+* ScreenModel は Repository / DAO / UseCase を直接持たない
+* ScreenModel は SKIE 経由で StateFlow を購読する
+* ScreenModel は購読用 Task を保持し、deinit で cancel する
+* Kotlin側の suspend fun は Swift側で async/await として呼び出す
+* TODO状態の source of truth は shared ViewModel に置く
+
+推奨例
+
+@MainActor
+@Observable
+final class TodoScreenModel {
+    private let viewModel: TodoViewModel
+    private var observeTask: Task<Void, Never>?
+    var uiState: TodoUiState
+
+    init(viewModel: TodoViewModel, initialState: TodoUiState) {
+        self.viewModel = viewModel
+        self.uiState = initialState
+        observe()
+    }
+
+    private func observe() {
+        observeTask = Task { [weak self] in
+            guard let self else { return }
+            for await state in viewModel.uiState {
+                self.uiState = state
+            }
+        }
+    }
+
+    func addTodo(title: String) {
+        viewModel.addTodo(title: title)
+    }
+
+    func toggleTodo(id: Int64) {
+        viewModel.toggleTodo(id: id)
+    }
+
+    func deleteTodo(id: Int64) {
+        viewModel.deleteTodo(id: id)
+    }
+
+    func refresh() {
+        Task {
+            do {
+                try await viewModel.refresh()
+            } catch {
+                self.uiState = self.uiState.copy(
+                    errorMessage: error.localizedDescription
+                )
+            }
+        }
+    }
+
+    deinit {
+        observeTask?.cancel()
+    }
+}
+
+このコードはあくまでイメージです。
+実際のAPI名、初期状態生成、`copy` の可否、SKIEによる生成APIに合わせて調整してください。
+
+禁止
+
+* Swift側でRepositoryやDB処理を再実装しない
+* shared ViewModelと別のsource of truthを作らない
+* @Observable ScreenModelにビジネスロジックを肥大化させない
+* SKIEを使っているのに、手動で不要なFlow wrapperを増やさない
+* @Observable を KMP ViewModel の置き換えとして扱わない
+
+判断基準
+
+このプロジェクトは iOS 17+ を許容するサンプル / 検証プロジェクトなので、iOS側は Observation Framework 採用を基本方針とする。
+ただし、`@Observable` は KMP ViewModel を置き換えるものではなく、SwiftUIに状態を届けるための薄い橋渡しとして使う。
+
+⸻
+
 Android / Compose 実装方針
 
 Android UI は Jetpack Compose を使います。
