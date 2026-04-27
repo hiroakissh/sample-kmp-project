@@ -11,6 +11,7 @@
 		1A1A1A1A1A1A1A1A1A1A1002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2002 /* ContentView.swift */; };
 		1A1A1A1A1A1A1A1A1A1A1003 /* IosViewModelStoreOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2003 /* IosViewModelStoreOwner.swift */; };
 		1A1A1A1A1A1A1A1A1A1A1004 /* TodoObservableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1005 /* TodoModelHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1A1A1A1A1A1A1A1A1A1A2003 /* IosViewModelStoreOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosViewModelStoreOwner.swift; sourceTree = "<group>"; };
 		1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoObservableModel.swift; sourceTree = "<group>"; };
 		1A1A1A1A1A1A1A1A1A1A2005 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelHolder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 				1A1A1A1A1A1A1A1A1A1A2002 /* ContentView.swift */,
 				1A1A1A1A1A1A1A1A1A1A2003 /* IosViewModelStoreOwner.swift */,
 				1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */,
+				1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 				1A1A1A1A1A1A1A1A1A1A1002 /* ContentView.swift in Sources */,
 				1A1A1A1A1A1A1A1A1A1A1003 /* IosViewModelStoreOwner.swift in Sources */,
 				1A1A1A1A1A1A1A1A1A1A1004 /* TodoObservableModel.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1005 /* TodoModelHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

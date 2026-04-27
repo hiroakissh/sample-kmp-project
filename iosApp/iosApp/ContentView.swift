@@ -24,11 +24,6 @@ struct ContentView: View {
     }
 }
 
-@MainActor
-final class TodoModelHolder: ObservableObject {
-    @Published var model: TodoObservableModel?
-}
-
 struct TodoScreen: View {
     @ObservedObject var model: TodoObservableModel
     @State private var title = ""
