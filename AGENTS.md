@@ -350,6 +350,8 @@ iOS UI は SwiftUI を使います。
 * SwiftUI View は薄く保つ
 * 状態と操作は shared KMP ViewModel を利用する
 * TODO Repository やビジネスロジックを Swift で再実装しない
+* Swift側で Repository を持たない
+* Swift側で DB 操作をしない
 * IosViewModelStoreOwner または同等のライフサイクル管理を維持する
 * ViewModel は SwiftUI screen 単位で適切にスコープする
 * deinit などで ViewModelStore を適切に clear する
@@ -359,6 +361,8 @@ iOS UI は SwiftUI を使います。
 * ユーザー操作は ScreenModel で処理せず、Kotlin ViewModel へ委譲する
 * Task のキャンセルを考慮する
 * TODO状態の source of truth を複数作らない
+* Kotlin ViewModel と別の状態管理を Swift側に作らない
+* uiState を Swift側で勝手に加工しすぎない
 
 Swift側に小さな adapter / ScreenModel 型を置くのは問題ありません。
 ただし、domain logic や repository logic をSwift側に複製しないでください。
@@ -648,6 +652,11 @@ Agent の作業手順
 * SwiftUI を削除する
 * shared ViewModel を明示的な依頼なしに platform-only ViewModel へ置き換える
 * shared Repository logic を Android / iOS に重複実装する
+* Swift側に Repository を持たせる
+* Swift側から DB 操作を行う
+* TODO のビジネスルールを Swift側で再実装する
+* Kotlin ViewModel と別の TODO 状態管理を Swift側に作る
+* shared の uiState を Swift側で過度に加工して別の source of truth にする
 * SKIEを外す
 * 明確な理由なしに KMP-NativeCoroutines を追加する
 * 明確な理由なしに Koin / Ktor / SQLDelight / Compose Multiplatform を追加する
