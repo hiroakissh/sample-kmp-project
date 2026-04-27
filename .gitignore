@@ -11,3 +11,5 @@ iosApp/*.xcworkspace/
 *.xcodeproj/project.xcworkspace/
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcuserdata/
+**/xcuserdata/
+*.xcuserstate
