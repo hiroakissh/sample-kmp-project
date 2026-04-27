@@ -12,6 +12,14 @@
 		1A1A1A1A1A1A1A1A1A1A1003 /* IosViewModelStoreOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2003 /* IosViewModelStoreOwner.swift */; };
 		1A1A1A1A1A1A1A1A1A1A1004 /* TodoObservableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */; };
 		1A1A1A1A1A1A1A1A1A1A1005 /* TodoModelHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1006 /* TodoRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2007 /* TodoRoute.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1007 /* TodoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2008 /* TodoScreen.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1008 /* TodoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2009 /* TodoInputView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1009 /* TodoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2010 /* TodoRowView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1010 /* TodoEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2011 /* TodoEmptyView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1011 /* TodoErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2012 /* TodoErrorView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1012 /* TodoLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2013 /* TodoLoadingView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1013 /* TodoPreviewFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A1A1A1A1A1A1A1A1A2014 /* TodoPreviewFixtures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +39,14 @@
 		1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoObservableModel.swift; sourceTree = "<group>"; };
 		1A1A1A1A1A1A1A1A1A1A2005 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelHolder.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2007 /* TodoRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRoute.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2008 /* TodoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoScreen.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2009 /* TodoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInputView.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2010 /* TodoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRowView.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2011 /* TodoEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEmptyView.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2012 /* TodoErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoErrorView.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2013 /* TodoLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoadingView.swift; sourceTree = "<group>"; };
+		1A1A1A1A1A1A1A1A1A1A2014 /* TodoPreviewFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPreviewFixtures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +72,28 @@
 			isa = PBXGroup;
 			children = (
 				1A1A1A1A1A1A1A1A1A1A2001 /* KmpTodoApp.swift */,
-				1A1A1A1A1A1A1A1A1A1A2002 /* ContentView.swift */,
+				1A1A1A1A1A1A1A1A1A1A4004 /* Views */,
 				1A1A1A1A1A1A1A1A1A1A2003 /* IosViewModelStoreOwner.swift */,
 				1A1A1A1A1A1A1A1A1A1A2004 /* TodoObservableModel.swift */,
 				1A1A1A1A1A1A1A1A1A1A2006 /* TodoModelHolder.swift */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		1A1A1A1A1A1A1A1A1A1A4004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A1A1A1A1A1A1A1A1A1A2002 /* ContentView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2007 /* TodoRoute.swift */,
+				1A1A1A1A1A1A1A1A1A1A2008 /* TodoScreen.swift */,
+				1A1A1A1A1A1A1A1A1A1A2009 /* TodoInputView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2010 /* TodoRowView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2011 /* TodoEmptyView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2012 /* TodoErrorView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2013 /* TodoLoadingView.swift */,
+				1A1A1A1A1A1A1A1A1A1A2014 /* TodoPreviewFixtures.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1A1A1A1A1A1A1A1A1A1A4003 /* Products */ = {
@@ -186,6 +218,14 @@
 				1A1A1A1A1A1A1A1A1A1A1003 /* IosViewModelStoreOwner.swift in Sources */,
 				1A1A1A1A1A1A1A1A1A1A1004 /* TodoObservableModel.swift in Sources */,
 				1A1A1A1A1A1A1A1A1A1A1005 /* TodoModelHolder.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1006 /* TodoRoute.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1007 /* TodoScreen.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1008 /* TodoInputView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1009 /* TodoRowView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1010 /* TodoEmptyView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1011 /* TodoErrorView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1012 /* TodoLoadingView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1013 /* TodoPreviewFixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
