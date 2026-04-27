@@ -363,6 +363,8 @@ iOS UI は SwiftUI を使います。
 * TODO状態の source of truth を複数作らない
 * Kotlin ViewModel と別の状態管理を Swift側に作らない
 * uiState を Swift側で勝手に加工しすぎない
+* Viewファイルを巨大化させず、Screen / Row / Form / EmptyState / ErrorState などに切り分ける
+* Previewできるように、実KMP ViewModelや実DBに依存しない表示専用Viewを用意する
 
 Swift側に小さな adapter / ScreenModel 型を置くのは問題ありません。
 ただし、domain logic や repository logic をSwift側に複製しないでください。
@@ -501,6 +503,44 @@ final class TodoScreenModel {
 
 ⸻
 
+ネイティブView分割 / Preview方針
+
+Android / iOS ともに、ネイティブViewファイルをおろそかにしないでください。
+shared ViewModel にロジックを寄せる一方で、各プラットフォームのViewは読みやすく、Previewしやすい構成にします。
+
+共通方針
+
+* Screen全体、入力フォーム、一覧行、空状態、エラー表示、ローディング表示を適切に切り分ける
+* 1つのView / Composableに画面全体の責務を詰め込みすぎない
+* Container / Route と Stateless View を分ける
+* Container / Route は ViewModel接続、状態購読、イベント委譲だけを担当する
+* Stateless View は状態引数とコールバックだけで描画できるようにする
+* Previewは Stateless View を対象にする
+* Previewから実DB、実Repository、実KMP ViewModelを起動しない
+* Preview用のサンプル状態を用意する
+* Preview用サンプル状態にビジネスロジックを持たせない
+* UIの見た目確認と shared logic の検証を混ぜない
+
+iOS / SwiftUI
+
+* `ContentView` に全UIを詰め込まず、`TodoScreen`、`TodoInputView`、`TodoRowView`、`TodoEmptyView` などへ分割する
+* `TodoScreenModel` は `@Observable` な薄いAdapterにとどめる
+* Previewは `TodoScreen` などの表示専用Viewにサンプル `TodoUiState` を渡して作る
+* Previewのために Swift側 Repository や fake DB を作らない
+* Previewが必要な場合は、表示用の fixture / sample state をSwift側に置いてよい
+* fixture / sample state はUI確認用に限定し、source of truth として扱わない
+
+Android / Compose
+
+* `MainActivity` に全UIを詰め込まず、`TodoRoute`、`TodoScreen`、`TodoInputRow`、`TodoRow`、`TodoEmptyState` などへ分割する
+* `TodoRoute` は ViewModel 取得と `collectAsStateWithLifecycle` に集中させる
+* `TodoScreen` 以下は状態引数とイベントコールバックだけで描画できるようにする
+* `@Preview` は `TodoScreen` など実DB不要のComposableに付ける
+* Preview用のサンプル `TodoUiState` / `TodoItem` を用意してよい
+* Previewから `AndroidTodoGraph`、Room、Repository、KMP ViewModelを呼ばない
+
+⸻
+
 Android / Compose 実装方針
 
 Android UI は Jetpack Compose を使います。
@@ -513,6 +553,7 @@ Android UI は Jetpack Compose を使います。
 * Repository / Database logic を Android 側で重複実装しない
 * Android固有処理は apps/android に閉じ込める
 * Preview は UI用のサンプル状態にとどめ、実DBアクセスを行わない
+* Viewファイルを巨大化させず、Route / Screen / Component / Preview に分ける
 
 Android側では、通常の Kotlin / Compose の作法で StateFlow を購読して構いません。
 
