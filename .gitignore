@@ -8,3 +8,6 @@ local.properties
 DerivedData/
 iosApp/Pods/
 iosApp/*.xcworkspace/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
