@@ -353,18 +353,22 @@ iOS UI は SwiftUI を使います。
 * IosViewModelStoreOwner または同等のライフサイクル管理を維持する
 * ViewModel は SwiftUI screen 単位で適切にスコープする
 * deinit などで ViewModelStore を適切に clear する
+* SwiftUI用のScreenModelは @Observable を優先する
 * SKIEによって公開された AsyncSequence を使って state を購読する
+* SKIE経由の StateFlow 購読結果を ScreenModel の var uiState に代入する
+* ユーザー操作は ScreenModel で処理せず、Kotlin ViewModel へ委譲する
 * Task のキャンセルを考慮する
 * TODO状態の source of truth を複数作らない
 
-Swift側に小さな adapter 型を置くのは問題ありません。
+Swift側に小さな adapter / ScreenModel 型を置くのは問題ありません。
 ただし、domain logic や repository logic をSwift側に複製しないでください。
 
 SwiftUI側の状態管理イメージ
 
 @MainActor
-final class TodoScreenModel: ObservableObject {
-    @Published private(set) var uiState: TodoUiState?
+@Observable
+final class TodoScreenModel {
+    private(set) var uiState: TodoUiState?
     private let viewModel: TodoViewModel
     private var observeTask: Task<Void, Never>?
     init(viewModel: TodoViewModel) {
@@ -373,6 +377,7 @@ final class TodoScreenModel: ObservableObject {
     }
     private func observe() {
         observeTask = Task {
+            // SKIEによって StateFlow を Swift AsyncSequence として購読する想定
             for await state in viewModel.uiState {
                 self.uiState = state
             }
