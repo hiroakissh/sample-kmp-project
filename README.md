@@ -29,6 +29,10 @@ AGP 9.1.x のため JDK 17 以上が必要です。
 
 iOS は `iosApp/iosApp.xcodeproj` を開きます。Xcode の Run Script phase が `:shared:embedAndSignAppleFrameworkForXcode` を実行して `Shared.framework` を生成・連携します。
 
+## Design docs
+
+- [Lifecycle Design](docs/lifecycle.md): Android / iOS のライフサイクル差分と、shared ViewModel のスコープ方針。
+
 ## References
 
 - Android KMP ViewModel: https://developer.android.com/kotlin/multiplatform/viewmodel?hl=ja
